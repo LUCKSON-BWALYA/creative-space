@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codveda-Technologies</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --purple: #BFBFD1;
+    --pink: #FFB3AD;
+    --orange: #6DBEEB;
+    --light-purple: #E8E8F0;
+    --light-pink: #FFE5E3;
+    --light-orange: #E8F4FB;
+    --dark-purple: #9A9AB8;
+    --white: #ffffff;
+    --gray: #1F2937;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--gray);
+    background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-pink) 100%);
+    min-height: 100vh;
+}
+/* FLEXBOX: Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: linear-gradient(90deg, var(--purple) 0%, var(--orange) 50%, var(--pink) 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+.nav-links a:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+gap: 5px;
+}
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    transition: 0.3s;
+}
+/* FLEXBOX: Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 5%;
+    gap: 3rem;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+    color: var(--white);
+}
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px var(--pink);
+}
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+.hero-image {
+    flex: 0.05;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+}
+.hero-image-placeholder {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--pink) 0%, var(--orange) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--pink);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 179, 173, 0.4);
+}
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 179, 173, 0.6);
+}
+/* CSS GRID: Photo Gallery */
+.gallery-section {
+    padding: 4rem 5%;
+    background: var(--white);
+}
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--orange);
+    text-shadow: 2px 2px 4px rgba(109, 190, 235, 0.2);
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.gallery-item {
+    position: relative;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.gallery-item:nth-child(1) { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+.gallery-item:nth-child(2) { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+.gallery-item:nth-child(3) { background: linear-gradient(135deg, var(--orange), var(--purple)); }
+.gallery-item:nth-child(4) { background: linear-gradient(135deg, var(--purple), var(--orange)); }
+.gallery-item:nth-child(5) { background: linear-gradient(135deg, var(--pink), var(--purple)); }
+.gallery-item:nth-child(6) { background: linear-gradient(135deg, var(--orange), var(--pink)); }
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.blog-section {
+    padding: 4rem 5%;
+    background: linear-gradient(135deg, var(--light-pink) 0%, var(--light-orange) 100%);
+}
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.blog-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+.blog-card:hover {
+    transform: translateY(-8px);
+}
+.blog-image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    overflow: hidden;
+}
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.blog-card:nth-child(1) .blog-image { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+.blog-card:nth-child(2) .blog-image { background: linear-gradient(135deg, var(--pink), var(--orange)); }
+.blog-card:nth-child(3) .blog-image { background: linear-gradient(135deg, var(--orange), var(--purple)); }
+.blog-content {
+    padding: 1.5rem;
+}
+.blog-content h3 {
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+.blog-content p {
+    color: var(--gray);
+    margin-bottom: 1rem;
+}
+.blog-date {
+    color: var(--pink);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+/* FLEXBOX: Features Section */
+.features-section {
+    padding: 4rem 5%;
+    background: var(--white);
+}
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    justify-content: center;
+}
+.feature-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--light-purple), var(--light-pink));
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+.feature-card h3 {
+    color: var(--orange);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+.feature-card p {
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+/* CSS GRID: Testimonials Section */
+.testimonials-section {
+    padding: 4rem 5%;
+    background: linear-gradient(135deg, var(--pink) 100%, var(--pink) 100%, var(--pink) 100%);
+    color: var(--white);
+}
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid var(--white);
+    transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+    transform: scale(1.05);
+    background: var(--orange);
+}
+.testimonial-text {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.author-info h4 {
+    margin-bottom: 0.2rem;
+}
+.author-info p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+/* FLEXBOX: Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    background: var(--gray);
+    color: var(--white);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+.footer-links a {
+    color: var(--light-purple);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: var(--pink);
+}
+/* RESPONSIVE: Mobile */
+@media (max-width: 768px) {
+.nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--purple);
+        padding: 1rem;
+}
+.nav-links.active {
+    display: flex;
+}
+.menu-toggle {
+    display: flex;
+}
+.hero {
+    flex-direction: column;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 2rem;
+}
+.hero-image-placeholder {
+    width: 250px;
+    height: 250px;
+}
+.gallery-grid {
+    grid-template-columns: 1fr;
+}
+.blog-grid {
+    grid-template-columns: 1fr;
+}
+.features-container {
+    flex-direction: column;
+}
+footer {
+    flex-direction: column;
+    text-align: center;
+}
+}
+/* RESPONSIVE: Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+.gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+.blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+.hero h1 {
+    font-size: 2.5rem;
+}
+}
+</style>
+</head>
+<body>
+<!-- FLEXBOX: Navigation -->
+<nav>
+<div class="logo">Creative Space</div>
+<div class="menu-toggle" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+</ul>
+</nav>
+<!-- FLEXBOX: Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Welcome to Creative Space</h1>
+      <p>Discover beautiful designs with modern Flexbox & Grid layouts. Experience responsive design at its finest!</p>
+    <a href="#gallery" class="cta-button">Explore Now</a>
+  </div>
+<div class="hero-image">
+   <div class="hero-image-placeholder">
+    CREATIVITY 
+   </div>
+</div>
+</section>
+<!-- CSS GRID: Photo Gallery -->
+<section class="gallery-section" id="gallery">
+    <h2 class="section-title">Photo Gallery</h2>
+<div class="gallery-grid">
+
+<div class="gallery-item">
+    <img src="C:\Users\L B\Desktop\Creative-Space\photo-gallery\abstract-art.png" alt="Autumn Street Scene">
+        <div class="gallery-overlay"> Abstract Art </div>
+    </div>
+<div class="gallery-item">
+     <img src="C:\Users\L B\Desktop\Creative-Space\photo-gallery\fire and ice.jpg" alt="Fire and Ice">
+        <div class="gallery-overlay">Fire And Ice</div>
+    </div>
+<div class="gallery-item">
+     <img src="C:\Users\L B\Desktop\Creative-Space\photo-gallery\ocean-waves.jpg" alt="Ocean Sunset">
+        <div class="gallery-overlay"> Ocean Waves</div>
+    </div>
+<div class="gallery-item">
+ <img src="C:\Users\L B\Desktop\Creative-Space\photo-gallery\starry-nights.webp" alt="Starry Night City">
+<div class="gallery-overlay">Starry Night</div>
+</div>
+<div class="gallery-item">
+    <img src="C:\Users\L B\Desktop\Creative-Space\photo-gallery\sunset-dreams.jpg" alt="Sunset Silhouette">
+       <div class="gallery-overlay">Golden Hour</div>
+    </div>
+<div class="gallery-item">
+    <img src="C:\Users\L B\Desktop\Creative-Space\photo-gallery\Spring-Vibes.avif" alt="Spring Vibes">
+        <div class="gallery-overlay">Spring Vibes</div>
+    </div>
+</div>
+</section>
+<!-- CSS GRID: Blog Layout -->
+<section class="blog-section" id="blog">
+    <h2 class="section-title">Latest Blog Posts</h2>
+<div class="blog-grid">
+<div class="blog-card">
+<div class="blog-image">
+    <img src="C:\Users\L B\Desktop\Creative-Space\blog-Posts\mastering CSS Grid.jpg" alt="Color Theory">
+</div>
+<div class="blog-content">
+    <h3>Mastering CSS Grid</h3>
+        <p>Learn how to create powerful layouts with CSS Grid. From basic concepts to advanced techniques.</p>
+    <span class="blog-date">November 17, 2025</span>
+</div>
+</div>
+<div class="blog-card">
+<div class="blog-image">
+    <img src="C:\Users\L B\Desktop\Creative-Space\blog-Posts\flexbox.png" alt="Product Design">
+</div>
+<div class="blog-content">
+    <h3>Flexbox Best Practices</h3>
+        <p>Discover the secrets of building flexible and responsive designs with Flexbox layout system.</p>
+    <span class="blog-date">December 09, 2025</span>
+</div>
+</div>
+<div class="blog-card">
+<div class="blog-image">
+    <img src="C:\Users\L B\Desktop\Creative-Space\blog-Posts\color theory.jpg" alt="CSS Grid Advanced">
+</div>
+<div class="blog-content">
+    <h3>Color Theory in Web</h3>
+        <p>Understanding color combinations and how to use multiple colors effectively in design.</p>
+    <span class="blog-date">December 15, 2025</span>
+</div>
+</div>
+</div>
+</section>
+<!-- FLEXBOX: Features Section -->
+<section class="features-section" id="features">
+    <h2 class="section-title">Amazing Features</h2>
+<div class="features-container">
+<div class="feature-card">
+    <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+    <p>Optimized performance ensures your website loads in the blink of an eye.</p>
+</div>
+<div class="feature-card">
+    <div class="feature-icon">💻</div>
+        <h3>Fully Responsive</h3>
+    <p>Perfect viewing experience across all devices from desktop to mobile.</p>
+</div>
+<div class="feature-card">
+    <div class="feature-icon">🎨</div>
+        <h3>Modern Design</h3>
+    <p>Beautiful gradients and smooth animations create stunning visual experiences.</p>
+</div>
+</div>
+</section>
+<!-- CSS GRID: Testimonials Section -->
+<section class="testimonials-section" id="testimonials">
+    <h2 class="section-title">What People Say</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card">
+    <p class="testimonial-text">"This design is absolutely stunning! The color combination is perfect and the layout is incredibly responsive.!"</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+    <img src="C:\Users\L B\Desktop\Creative-Space\what people say\BWALYA LUCKSON.jpg"  alt=" BWALYA LUCKSON">
+</div>
+<div class="author-info">
+    <h4>BWALYA LUCKSON</h4>
+        <p> UI/UX Disigner | Web Developer</p>
+    </div>
+</div>
+</div>
+<div class="testimonial-card">
+<p class="testimonial-text">"The creativity and design sense was outstanding. Every visual element was well crafted, 
+   while the Flexbox and Grid implementation remained clean, moden and user-friendly.!"</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+    <img src="C:\Users\L B\Desktop\Creative-Space\what people say\febby ndaila.jpg" alt="NDAILA FEBBY">
+</div>
+<div class="author-info">
+    <h4>NDAILA FEBBY</h4>
+        <p>Frontend Developer | Graphic Designer</p>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<p class="testimonial-text">"This website is clean, modern, and the well-structure 
+    style and colour blend gives it a unique layout. the Design is professional, Navigation is 
+    smooth, and it clearly shows strong web development skills and attention to detail.!"</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+    <img src="C:\Users\L B\Desktop\Creative-Space\what people say\Mbiko.jpg" alt="STEVEN MUBIWA">
+</div>
+<div class="author-info">
+    <h4>STEVEN MUBIWA</h4>
+        <p>Cyber Security Expart | Database Architect </p>
+</div>
+</div>
+</div>
+
+<div class="testimonial-card">
+  <p class="testimonial-text">"I like how the design is simple yet bold. The color instantly draws attention, which makes 
+    sense. The layout keeps things clean, and key information is easy to find.!"</p>
+<div class="testimonial-author">
+<div class="author-avatar">
+    <img src="C:\Users\L B\Desktop\Creative-Space\what people say\TEHILLAH MUSELEPETE.jpg" alt="TEHILLAH MUSELEPETE">
+</div>
+<div class="author-info">
+    <h4>TEHILLAH MUSELEPETE</h4>
+        <p> UI/UX Designer | Women in ICT coordinater ICTAZ Chapter </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FLEXBOX: Footer -->
+<footer>
+    <p>&copy; 2025 Creative Space Portfolio. Empowered by Codveda Technologies. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#home">Privacy</a>
+            <a href="#home">Terms</a>
+            <a href="#home">Contact</a>
+        </div>
+</footer>
+<script>
+function toggleMenu() {
+const navLinks = document.getElementById('navLinks');
+navLinks.classList.toggle('active');
+}
+</script>
+</body>
+</html>
